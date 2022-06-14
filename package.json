@@ -10,7 +10,7 @@
     "dev": "concurrently -c green.bold,blue.bold 'npm:dev:docker' 'npm:dev:next'",
     "dev:next": "next dev",
     "dev:docker": "docker compose up",
-    "prisma:docker": "dev:docker && migrate && generate",
+    "prisma:docker": "npm run dev:docker && migrate && generate",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate"
 	},
