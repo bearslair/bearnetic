@@ -21,4 +21,4 @@
 ## TODO:
 
 - Migrate to **[Relay](https://relay.dev/)**
-- ~~Add**[CVA](https://github.com/joe-bell/cva)**~~
+- ~~Add **[CVA](https://github.com/joe-bell/cva)**~~
