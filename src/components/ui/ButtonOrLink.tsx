@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 type ButtonOrLinkProps = ComponentProps<'button'> & ComponentProps<'a'>;
 
 export interface Props extends ButtonOrLinkProps {
-	// If the link should preserve the `redirect` parameter, set this to `true.
+	// If the link should preserve the `redirect` parameter, set this to `true`.
 	preserveRedirect?: boolean;
 }
 
@@ -15,16 +15,12 @@ export interface Props extends ButtonOrLinkProps {
  * also correctly get wrapped in a next/link component to ensure ideal
  * page-to-page transitions.
  */
-
 export const ButtonOrLink = forwardRef<
 	HTMLButtonElement | HTMLAnchorElement,
 	Props
 >(({ href, preserveRedirect, ...props }, ref: any) => {
 	const router = useRouter();
 	const isLink = typeof href !== 'undefined';
-	const ButtonOrLink = isLink ? 'a' : 'button';
-
-	let content = <ButtonOrLink {...props} ref={ref} />;
 
 	if (isLink) {
 		const finalHref =
@@ -34,8 +30,12 @@ export const ButtonOrLink = forwardRef<
 				  )}`
 				: href!;
 
-		return <Link href={finalHref}>{content}</Link>;
+		return (
+			<Link href={finalHref}>
+				<a ref={ref} {...props} />
+			</Link>
+		);
 	}
 
-	return content;
+	return <button {...props} type={props.type || 'button'} ref={ref} />;
 });
