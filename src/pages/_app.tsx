@@ -1,8 +1,14 @@
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import NProgress from '~/components/ui/utils/NProgress';
 import '../styles.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }: AppProps) {
+	return (
+		<>
+			<NProgress />
+			<Component {...pageProps} />
+		</>
+	);
 }
 
-export default MyApp
+export default App;

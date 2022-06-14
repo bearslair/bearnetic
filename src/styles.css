@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-neutral-800 text-gray-100 font-sans antialiased
+* {
+  @apply focus:outline-none focus:ring-1 focus:ring-blue-300
 }
 
-/* NOTE: Webkit autofill can be very annoying, and leave the auto-filled content invisible to the user. */
-/* We try to avoid this by setting this to a sane default, which seems to work based on some experimentation. */
+body {
+  @apply relative min-h-full bg-neutral-800 text-gray-100 font-sans antialiased
+}
+
+/* Change autofill color */
 input:-webkit-autofill {
 	-webkit-text-fill-color: theme('colors.gray.800') !important;
 }
