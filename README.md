@@ -17,3 +17,6 @@
 -   **[Apollo Client](https://www.apollographql.com/docs/react/)**
 -   **[Zod](https://github.com/colinhacks/zod)**
 -   **[React Hook Form](https://react-hook-form.com/)**
+
+## TODO:
+- Migrate to **[Relay](https://relay.dev/)**
