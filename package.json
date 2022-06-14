@@ -7,6 +7,12 @@
 		"url": "https://github.com/bearslair/bearnetic.git"
 	},
 	"scripts": {
+    "dev": "concurrently -c green.bold,blue.bold 'npm:dev:docker' 'npm:dev:next'",
+    "dev:next": "next dev",
+    "dev:docker": "docker compose up",
+    "prisma:docker": "dev:docker && migrate && generate",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.4.11",

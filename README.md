@@ -20,3 +20,4 @@
 
 ## TODO:
 - Migrate to **[Relay](https://relay.dev/)**
+- Add **[React CVA](https://github.com/G3root/react-cva)**
