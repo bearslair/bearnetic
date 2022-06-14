@@ -9,6 +9,8 @@ export interface Props extends ButtonOrLinkProps {
 	preserveRedirect?: boolean;
 }
 
+// TODO: Add storybook for UI Components
+
 /**
  * This is a base component that will render either a button or a link,
  * depending on the props that are passed to it. The link rendered will
