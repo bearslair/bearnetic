@@ -1,3 +1,6 @@
 {
-	"vscode-graphql.showExecCodelens": false
+	"vscode-graphql.showExecCodelens": false,
+	"tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
 }
