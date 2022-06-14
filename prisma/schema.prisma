@@ -1,0 +1,49 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["filterJson", "fullTextSearch", "interactiveTransactions"]
+}
+
+// This generator is used to provide type information to Pothos.
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
+model User {
+  pk Int    @id @default(autoincrement())
+  id String @unique @default(uuid()) @db.Uuid
+
+  name     String @unique
+  email    String @unique
+  password String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions       Session[]
+  passwordResets PasswordReset[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  expiresAt DateTime @default(now())
+
+  user   User @relation(fields: [userPk], references: [pk])
+  userPk Int
+}
+
+model PasswordReset {
+  id String @id @default(uuid())
+
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  user   User @relation(fields: [userPk], references: [pk])
+  userPk Int
+}
