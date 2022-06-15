@@ -1,13 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=block');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  @apply focus:outline-none focus:ring-1 focus:ring-blue-300
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-400
 }
 
 body {
   @apply relative min-h-full bg-neutral-800 text-gray-100 font-sans antialiased
+}
+
+a {
+  @apply focus:outline-none focus:ring-0
 }
 
 /* Change autofill color */
