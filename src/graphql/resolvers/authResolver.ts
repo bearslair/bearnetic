@@ -3,8 +3,30 @@ import { db } from '~/utils/prisma';
 import { createSession, removeSession } from '~/utils/sessions';
 import { builder } from '../builder';
 
-// Every GraphQL query will be made through the `me` query field.
-builder.queryField('me', (t) =>
+// // Every GraphQL query will be made through the `me` query field.
+// builder.queryField('me', (t) =>
+// 	t.prismaField({
+// 		type: 'User',
+// 		nullable: true,
+// 		// The "me" field can be queried even if the user is not logged in
+// 		skipTypeScopes: true,
+// 		resolve: (query, _root, _args, { session }) => {
+// 			if (!session?.userPk) {
+// 				return null;
+// 			}
+
+// 			return db.user.findUnique({
+// 				...query,
+// 				where: {
+// 					pk: session.userPk,
+// 				},
+// 				rejectOnNotFound: true,
+// 			});
+// 		},
+// 	}),
+// );
+
+builder.queryField('viewer', (t) =>
 	t.prismaField({
 		type: 'User',
 		nullable: true,
@@ -26,7 +48,7 @@ builder.queryField('me', (t) =>
 	}),
 );
 
-const LoginInput = builder.inputType('LoginInput', {
+const LogInInput = builder.inputType('LogInInput', {
 	fields: (t) => ({
 		email: t.string({ validate: { email: true } }),
 		password: t.string({ validate: { minLength: 8 } }),
@@ -43,7 +65,7 @@ builder.mutationField('login', (t) =>
 			unauthenticated: true,
 		},
 		args: {
-			input: t.arg({ type: LoginInput }),
+			input: t.arg({ type: LogInInput }),
 		},
 		resolve: async (_query, _root, { input }, { ironSession }) => {
 			const user = await authenticateUser(input.email, input.password);

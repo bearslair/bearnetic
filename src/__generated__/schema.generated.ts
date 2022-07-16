@@ -13,7 +13,7 @@ export type Scalars = {
   DateTime: string;
 };
 
-export type LoginInput = {
+export type LogInInput = {
   email: Scalars['String'];
   password: Scalars['String'];
 };
@@ -26,7 +26,7 @@ export type Mutation = {
 
 
 export type MutationLoginArgs = {
-  input: LoginInput;
+  input: LogInInput;
 };
 
 
@@ -36,7 +36,7 @@ export type MutationSignUpArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  me?: Maybe<User>;
+  viewer?: Maybe<User>;
 };
 
 export type SignUpInput = {

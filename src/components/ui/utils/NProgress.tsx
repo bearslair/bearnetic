@@ -1,36 +1,35 @@
-import nprogress, { start } from 'nprogress';
+import nprogress from 'nprogress';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-// Progress indicator at the header of the page when navigating between pages.
-const NProgress = () => {
+// This component provides a minimal progress indicator at the header of the page
+// when navigating between pages.
+export function NProgress() {
 	const router = useRouter();
 
 	useEffect(() => {
 		let timeout: NodeJS.Timeout;
 
-		function startProgress() {
+		function start() {
 			clearTimeout(timeout);
 			timeout = setTimeout(() => nprogress.start(), 100);
 		}
 
-		function stopProgress() {
+		function done() {
 			clearTimeout(timeout);
 			nprogress.done();
 		}
 
-		router.events.on('routeChangeStart', startProgress);
-		router.events.on('routeChangeComplete', stopProgress);
-		router.events.on('routeChangeError', stopProgress);
+		router.events.on('routeChangeStart', start);
+		router.events.on('routeChangeComplete', done);
+		router.events.on('routeChangeError', done);
 		return () => {
-			stopProgress();
-			router.events.off('routeChangeStart', startProgress);
-			router.events.off('routeChangeComplete', stopProgress);
-			router.events.off('routeChangeError', stopProgress);
+			done();
+			router.events.off('routeChangeStart', start);
+			router.events.off('routeChangeComplete', done);
+			router.events.off('routeChangeError', done);
 		};
-	});
+	}, [router.events]);
 
 	return null;
-};
-
-export default NProgress;
+}

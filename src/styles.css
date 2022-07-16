@@ -1,14 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=block');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: 'Inter', sans-serif;
-}
 
 * {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-400
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-400 font-sora
 }
 
 body {
@@ -21,5 +19,14 @@ a {
 
 /* Change autofill color */
 input:-webkit-autofill {
-	-webkit-text-fill-color: theme('colors.gray.800') !important;
+  -webkit-text-fill-color: theme('colors.gray.800') !important;
+}
+
+/* This correctly styles the minimal progress bar that is displayed when navigating between pages */
+#nprogress {
+  @apply z-50 pointer-events-none;
+}
+
+#nprogress .bar {
+  @apply bg-blue-500 fixed z-50 top-0 left-0 w-full h-0.5;
 }

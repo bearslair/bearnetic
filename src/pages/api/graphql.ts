@@ -50,7 +50,7 @@ function formatResult(result: ExecutionResult) {
 const handler: NextApiHandler = async (req, res) => {
 	// For POST requests, we require a custom header: X-CSRF-Trick.
 	// This helps ensure that cross-domain requests can't be issued.
-	console.log(req.headers);
+
 	if (req.method === 'POST' && req.headers['x-csrf-trick'] !== 'Bearnetic') {
 		res.status(400);
 		res.end('Invalid request');
@@ -79,7 +79,7 @@ const handler: NextApiHandler = async (req, res) => {
 			);
 		} else {
 			const { operationName, query, variables } = getGraphQLParameters(request);
-			console.log(schema);
+
 			const result = await processRequest<Context>({
 				operationName,
 				query,

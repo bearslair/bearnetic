@@ -7,7 +7,7 @@ import Spinner from './Spinner';
 const button = cva(
 	[
 		'uppercase',
-		'font-medium',
+		'font-semibold',
 		'rounded-lg',
 		'flex',
 		'items-center',
@@ -45,6 +45,13 @@ const button = cva(
 					'outline',
 					'outline-1',
 					'outline-red-500',
+				],
+				special: [
+					'bg-gradient-to-r',
+					'from-sky-500',
+					'to-indigo-900',
+					'hover:from-sky-400',
+					'hover:to-indigo-800',
 				],
 			},
 			size: {
